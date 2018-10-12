@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.katien.project.GlideApp
 import com.katien.project.R
 import com.katien.project.di.Injectable
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
@@ -41,9 +40,7 @@ class ProfileFragment : Fragment(), Injectable {
             fullname.text = it.fullname
             location.text = it.location
             company.text = it.company
-
-            activity?.progressBar?.visibility = View.GONE
-            activity?.contentView?.visibility = View.VISIBLE
+            (activity as MainActivity).isLoading = false
         })
 
         profileViewModel.loadProfile("devkate")

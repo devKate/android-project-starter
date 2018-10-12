@@ -2,13 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/searchFragment">
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.katien.project.ui.ProfileFragment"
         android:label="main_fragment"
-        tools:layout="@layout/profile_fragment" >
+        tools:layout="@layout/profile_fragment">
         <argument
             android:name="username"
             app:argType="string" />
@@ -17,7 +17,7 @@
         android:id="@+id/searchFragment"
         android:name="com.katien.project.ui.SearchFragment"
         android:label="search_fragment"
-        tools:layout="@layout/search_fragment" >
+        tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

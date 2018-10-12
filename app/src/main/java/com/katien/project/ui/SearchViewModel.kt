@@ -1,26 +1,23 @@
 package com.katien.project.ui
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.katien.project.model.Profile
 import com.katien.project.repo.ProfileRepository
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.*
 import javax.inject.Inject
 
 class SearchViewModel
 @Inject constructor(val profileRepository: ProfileRepository) : ViewModel() {
-    val profile = MutableLiveData<Profile>()
+    val profileList = MutableLiveData<List<Profile>>()
 
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    fun loadProfile(username: String) {
+    fun searchGithub(query: String) {
         uiScope.launch {
-            profile.value = profileRepository.getProfile(username)
+            val result = withContext(Dispatchers.IO + job) { profileRepository.searchGithub(query) }
+
         }
     }
 

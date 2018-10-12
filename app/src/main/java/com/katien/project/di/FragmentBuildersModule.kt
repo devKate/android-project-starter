@@ -9,6 +9,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeMainFragment(): ProfileFragment
+
     @ContributesAndroidInjector
     abstract fun contributeSearchFragment(): SearchFragment
 }
