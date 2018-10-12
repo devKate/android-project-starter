@@ -45,6 +45,7 @@ dependencies {
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.design
+    implementation deps.support.v4
     implementation deps.constraint_layout
     implementation deps.navigation.fragment_ktx
     implementation deps.lifecycle.runtime
@@ -65,7 +66,6 @@ dependencies {
     implementation deps.coroutines
     implementation deps.coroutines_android
     implementation deps.coroutine_adapter
-
     kapt deps.glide.compiler
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler

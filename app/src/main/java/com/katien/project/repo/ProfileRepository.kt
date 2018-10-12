@@ -14,6 +14,7 @@ import kotlin.coroutines.experimental.suspendCoroutine
 class ProfileRepository @Inject constructor(
         private val githubService: GithubService
 ) {
+
     suspend fun getProfile(username: String): Profile {
         return suspendCoroutine {
             githubService.getUser(username)

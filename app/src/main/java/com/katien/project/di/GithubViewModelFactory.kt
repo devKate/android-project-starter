@@ -1,4 +1,4 @@
-package com.katien.project.viewmodel
+package com.katien.project.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

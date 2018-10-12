@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.katien.project.GlideApp
 import com.katien.project.R
 import com.katien.project.di.Injectable
-import com.katien.project.viewmodel.ProfileViewModel
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
 class ProfileFragment : Fragment(), Injectable {
@@ -22,14 +22,13 @@ class ProfileFragment : Fragment(), Injectable {
 
     lateinit var profileViewModel: ProfileViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.main_fragment, container, false)
+            inflater.inflate(R.layout.profile_fragment, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         profileViewModel = ViewModelProviders
                 .of(this, viewModelFactory)
                 .get(ProfileViewModel::class.java)
-
 
         profileViewModel.profile.observe(this@ProfileFragment, Observer {
 
@@ -43,8 +42,8 @@ class ProfileFragment : Fragment(), Injectable {
             location.text = it.location
             company.text = it.company
 
-            progressBar.visibility = View.GONE
-            profileContent.visibility = View.VISIBLE
+            activity?.progressBar?.visibility = View.GONE
+            activity?.contentView?.visibility = View.VISIBLE
         })
 
         profileViewModel.loadProfile("devkate")

@@ -1,4 +1,4 @@
-package com.katien.project.viewmodel
+package com.katien.project.ui
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
