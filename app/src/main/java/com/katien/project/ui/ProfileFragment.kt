@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.katien.project.GlideApp
 import com.katien.project.R
 import com.katien.project.di.Injectable
 import com.katien.project.viewmodel.ProfileViewModel
@@ -25,14 +26,17 @@ class ProfileFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         profileViewModel = ViewModelProviders
                 .of(this, viewModelFactory)
                 .get(ProfileViewModel::class.java)
 
-        profileViewModel.loadProfile("devkate")
 
         profileViewModel.profile.observe(this@ProfileFragment, Observer {
+
+            GlideApp.with(this)
+                    .load(it.avatarUrl)
+                    .placeholder(R.drawable.background_splash)
+                    .into(profilePicture)
 
             username.text = it.username
             fullname.text = it.fullname
@@ -42,5 +46,7 @@ class ProfileFragment : Fragment(), Injectable {
             progressBar.visibility = View.GONE
             profileContent.visibility = View.VISIBLE
         })
+
+        profileViewModel.loadProfile("devkate")
     }
 }

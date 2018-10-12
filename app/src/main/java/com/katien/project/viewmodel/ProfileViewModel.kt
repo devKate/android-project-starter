@@ -1,5 +1,6 @@
 package com.katien.project.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.katien.project.model.Profile
@@ -12,17 +13,19 @@ import javax.inject.Inject
 
 class ProfileViewModel
 @Inject constructor(val profileRepository: ProfileRepository) : ViewModel() {
-     val profile = MutableLiveData<Profile>()
-//    val profile: LiveDataa<ConsumableValue<Profile>> = Transformations.map(_profile) { ConsumableValue(it) }
+    val profile = MutableLiveData<Profile>()
 
-
-    private val viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     fun loadProfile(username: String) {
         uiScope.launch {
-                profile.value=  profileRepository.getProfile(username)
-
+            profile.value = profileRepository.getProfile(username)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 }
