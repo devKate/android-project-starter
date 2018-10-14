@@ -40,9 +40,8 @@ class ProfileFragment : Fragment(), Injectable {
             fullname.text = it.fullname
             location.text = it.location
             company.text = it.company
-            (activity as MainActivity).isLoading = false
         })
 
-        profileViewModel.loadProfile("devkate")
+        profileViewModel.loadProfile(ProfileFragmentArgs.fromBundle(arguments).username)
     }
 }

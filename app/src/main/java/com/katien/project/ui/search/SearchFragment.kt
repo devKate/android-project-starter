@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.katien.project.R
@@ -35,22 +36,18 @@ class SearchFragment : Fragment(), Injectable {
                 .get(SearchViewModel::class.java)
 
         userRecyclerView.layoutManager = LinearLayoutManager(context)
-        userRecyclerView.adapter = SearchListAdapter()
+        userRecyclerView.adapter = SearchListAdapter {
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToProfileFragment(it.username))
+        }
 
         // TODO: this should not require multiple LiveDatas
         var result: LiveData<PagedList<UserSummary>>? = null
         searchButton.setOnClickListener {
-            userSearchLoadingIndicator.visibility = View.VISIBLE
-
             result?.removeObservers(this)
 
             result = viewModel.searchGithub(usernameInput.text.toString())
             result?.observe(this, Observer<PagedList<UserSummary>> {
-                if (it != null)
                     (userRecyclerView.adapter as SearchListAdapter).submitList(it)
-
-                userSearchLoadingIndicator.visibility = View.GONE
-                userRecyclerView.visibility = View.VISIBLE
             })
         }
     }
