@@ -3,8 +3,8 @@ package com.katien.project.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.katien.project.ui.ProfileViewModel
-import com.katien.project.ui.SearchViewModel
 import com.katien.project.ui.SplashViewModel
+import com.katien.project.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

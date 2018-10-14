@@ -51,6 +51,7 @@ dependencies {
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.java8
+    implementation deps.paging
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.moshi
@@ -62,6 +63,7 @@ dependencies {
     implementation deps.dagger.runtime
     implementation deps.dagger.android
     implementation deps.dagger.android_support
+
 
     implementation deps.coroutines
     implementation deps.coroutines_android

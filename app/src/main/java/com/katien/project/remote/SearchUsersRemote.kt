@@ -1,5 +1,6 @@
 package com.katien.project.remote
 
+import com.katien.project.model.UserSummary
 import com.squareup.moshi.Json
 
 
@@ -29,4 +30,7 @@ data class UserSummaryRemote(
         @Json(name = "type") val type: String, // User
         @Json(name = "site_admin") val siteAdmin: Boolean, // false
         @Json(name = "score") val score: Double // 13.917266
-)
+) {
+    fun toLocal() =
+            UserSummary(username = login, avatarUrl = avatarUrl)
+}

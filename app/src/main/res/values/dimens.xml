@@ -3,4 +3,6 @@
 <resources>
     <dimen name="view_padding">16dp</dimen>
     <dimen name="profile_image_size">64dp</dimen>
+    <dimen name="item_margin">16dp</dimen>
+    <dimen name="image_size_small">32dp</dimen>
 </resources>
