@@ -18,7 +18,7 @@ suspend fun <T> Call<T>.await(): T {
                 if (response.isSuccessful)
                     it.resume(response.body()!!)
                 else
-                    it.resumeWithException(Exception(response.errorBody().toString()))
+                    it.resumeWithException(Exception(response.errorBody()?.string() ?: "Error handling response from: ${call.request().url()}"))
             }
         })
     }
