@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.katien.project.GlideApp
 import com.katien.project.R
 import com.katien.project.di.helpers.Injectable
+import com.katien.project.remote.util.ServerError
+import com.katien.project.ui.util.makeToast
 import kotlinx.android.synthetic.main.profile_fragment.*
 import kotlinx.coroutines.experimental.CoroutineScope
 import kotlinx.coroutines.experimental.Dispatchers
@@ -36,16 +38,20 @@ class ProfileFragment : Fragment(), Injectable {
                 .get(ProfileViewModel::class.java)
 
         uiScope.launch {
-            val profile = profileViewModel.fetchProfile(ProfileFragmentArgs.fromBundle(arguments).username)
-            GlideApp.with(this@ProfileFragment)
-                    .load(profile.avatarUrl)
-                    .placeholder(R.drawable.background_splash)
-                    .into(profilePicture)
+            try {
+                val profile = profileViewModel.fetchProfile(ProfileFragmentArgs.fromBundle(arguments).username)
+                GlideApp.with(this@ProfileFragment)
+                        .load(profile.avatarUrl)
+                        .placeholder(R.drawable.background_splash)
+                        .into(profilePicture)
 
-            username.text = profile.username
-            fullname.text = profile.fullName
-            location.text = profile.location
-            company.text = profile.company
+                username.text = profile.username
+                fullname.text = profile.fullName
+                location.text = profile.location
+                company.text = profile.company
+            } catch (e: ServerError) {
+                context?.makeToast("Server error")
+            }
         }
     }
 
