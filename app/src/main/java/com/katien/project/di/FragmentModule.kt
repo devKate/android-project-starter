@@ -1,12 +1,12 @@
 package com.katien.project.di
 
-import com.katien.project.ui.ProfileFragment
+import com.katien.project.ui.profile.ProfileFragment
 import com.katien.project.ui.search.SearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class FragmentBuildersModule {
+abstract class FragmentModule {
     @ContributesAndroidInjector
     abstract fun contributeMainFragment(): ProfileFragment
 

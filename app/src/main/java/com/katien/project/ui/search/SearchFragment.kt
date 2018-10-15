@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.katien.project.R
-import com.katien.project.di.Injectable
+import com.katien.project.di.helpers.Injectable
 import com.katien.project.model.UserSummary
 import kotlinx.android.synthetic.main.search_fragment.*
 import javax.inject.Inject
@@ -40,7 +40,6 @@ class SearchFragment : Fragment(), Injectable {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToProfileFragment(it.username))
         }
 
-        // TODO: this should not require multiple LiveDatas
         var result: LiveData<PagedList<UserSummary>>? = null
         searchButton.setOnClickListener {
             result?.removeObservers(this)

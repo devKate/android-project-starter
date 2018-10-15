@@ -1,4 +1,4 @@
-package com.katien.project.remote
+package com.katien.project.remote.model
 
 import com.katien.project.model.Profile
 import com.squareup.moshi.Json
@@ -17,7 +17,7 @@ data class UserRemote(
 ) {
     fun toLocal() = Profile(
             username = login ?: "",
-            fullname = name ?: "",
+            fullName = name ?: "",
             avatarUrl = avatarUrl ?: "",
             company = company ?: "",
             location = location ?: ""

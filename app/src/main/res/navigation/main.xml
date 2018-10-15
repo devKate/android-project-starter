@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.katien.project.ui.ProfileFragment"
+        android:name="com.katien.project.ui.profile.ProfileFragment"
         android:label="main_fragment"
         tools:layout="@layout/profile_fragment">
         <argument

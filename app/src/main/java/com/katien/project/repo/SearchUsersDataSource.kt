@@ -3,7 +3,7 @@ package com.katien.project.repo
 import androidx.paging.PageKeyedDataSource
 import com.katien.project.model.UserSummary
 import com.katien.project.remote.GithubService
-import com.katien.project.remote.await
+import com.katien.project.remote.util.await
 import kotlinx.coroutines.experimental.CoroutineScope
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.launch

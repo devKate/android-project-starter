@@ -1,4 +1,4 @@
-package com.katien.project.di
+package com.katien.project.di.helpers
 
 /**
  * Marks an activity / fragment injectable.

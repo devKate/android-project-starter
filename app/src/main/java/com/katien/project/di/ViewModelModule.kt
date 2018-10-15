@@ -2,8 +2,10 @@ package com.katien.project.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.katien.project.ui.ProfileViewModel
+import com.katien.project.di.helpers.GithubViewModelFactory
+import com.katien.project.di.helpers.ViewModelKey
 import com.katien.project.ui.SplashViewModel
+import com.katien.project.ui.profile.ProfileViewModel
 import com.katien.project.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module

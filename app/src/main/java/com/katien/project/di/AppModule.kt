@@ -21,7 +21,10 @@ class AppModule {
     fun providesGitHubService(): GithubService {
 
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        logging.level = if (BuildConfig.DEBUG)
+            HttpLoggingInterceptor.Level.BODY
+        else
+            HttpLoggingInterceptor.Level.NONE
 
         val client = OkHttpClient.Builder()
         client.interceptors().add(logging)

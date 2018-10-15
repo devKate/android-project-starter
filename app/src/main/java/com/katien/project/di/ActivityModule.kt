@@ -8,10 +8,10 @@ import dagger.android.ContributesAndroidInjector
 
 @Suppress("unused")
 @Module
-abstract class MainActivityModule {
-    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+abstract class ActivityModule {
+    @ContributesAndroidInjector(modules = [FragmentModule::class])
     abstract fun contributeMainActivity(): MainActivity
 
-    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    @ContributesAndroidInjector(modules = [FragmentModule::class])
     abstract fun contributeSplashActivity(): SplashActivity
 }

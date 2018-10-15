@@ -2,7 +2,7 @@ package com.katien.project
 
 import android.app.Activity
 import android.app.Application
-import com.katien.project.di.AppInjector
+import com.katien.project.di.helpers.AppInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

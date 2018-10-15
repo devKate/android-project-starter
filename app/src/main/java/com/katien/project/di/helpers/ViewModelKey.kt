@@ -1,4 +1,4 @@
-package com.katien.project.di
+package com.katien.project.di.helpers
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

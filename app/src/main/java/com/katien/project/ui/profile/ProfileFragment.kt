@@ -1,17 +1,20 @@
-package com.katien.project.ui
+package com.katien.project.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.katien.project.GlideApp
 import com.katien.project.R
-import com.katien.project.di.Injectable
+import com.katien.project.di.helpers.Injectable
 import kotlinx.android.synthetic.main.profile_fragment.*
+import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.cancel
+import kotlinx.coroutines.experimental.launch
 import javax.inject.Inject
 
 class ProfileFragment : Fragment(), Injectable {
@@ -20,6 +23,9 @@ class ProfileFragment : Fragment(), Injectable {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var profileViewModel: ProfileViewModel
+
+    val uiScope = CoroutineScope(Dispatchers.Main)
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.profile_fragment, container, false)
 
@@ -29,19 +35,22 @@ class ProfileFragment : Fragment(), Injectable {
                 .of(this, viewModelFactory)
                 .get(ProfileViewModel::class.java)
 
-        profileViewModel.profile.observe(this@ProfileFragment, Observer {
-
-            GlideApp.with(this)
-                    .load(it.avatarUrl)
+        uiScope.launch {
+            val profile = profileViewModel.fetchProfile(ProfileFragmentArgs.fromBundle(arguments).username)
+            GlideApp.with(this@ProfileFragment)
+                    .load(profile.avatarUrl)
                     .placeholder(R.drawable.background_splash)
                     .into(profilePicture)
 
-            username.text = it.username
-            fullname.text = it.fullname
-            location.text = it.location
-            company.text = it.company
-        })
+            username.text = profile.username
+            fullname.text = profile.fullName
+            location.text = profile.location
+            company.text = profile.company
+        }
+    }
 
-        profileViewModel.loadProfile(ProfileFragmentArgs.fromBundle(arguments).username)
+    override fun onDestroy() {
+        super.onDestroy()
+        uiScope.coroutineContext.cancel()
     }
 }

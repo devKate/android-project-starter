@@ -1,4 +1,4 @@
-package com.katien.project.di
+package com.katien.project.di.helpers
 
 import android.app.Activity
 import android.app.Application
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.katien.project.App
+import com.katien.project.di.DaggerAppComponent
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
@@ -17,8 +18,7 @@ import dagger.android.support.HasSupportFragmentInjector
 object AppInjector {
     fun init(app: App) {
 
-        DaggerAppComponent
-                .builder()
+        DaggerAppComponent.builder()
                 .application(app)
                 .build()
                 .inject(app)

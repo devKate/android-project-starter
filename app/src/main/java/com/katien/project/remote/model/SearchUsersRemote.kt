@@ -1,4 +1,4 @@
-package com.katien.project.remote
+package com.katien.project.remote.model
 
 import com.katien.project.model.UserSummary
 import com.squareup.moshi.Json
