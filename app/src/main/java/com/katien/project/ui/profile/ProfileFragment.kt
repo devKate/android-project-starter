@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.katien.project.GlideApp
 import com.katien.project.R
 import com.katien.project.di.helpers.Injectable
@@ -51,6 +52,7 @@ class ProfileFragment : Fragment(), Injectable {
                 company.text = profile.company
             } catch (e: ServerError) {
                 context?.makeToast("Server error")
+                findNavController().popBackStack(R.id.searchFragment, true)
             }
         }
     }

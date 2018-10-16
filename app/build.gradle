@@ -41,33 +41,34 @@ android {
 dependencies {
     implementation deps.kotlin.stdlib
 
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+    implementation deps.coroutines.adapter
+
     implementation deps.support.app_compat
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.design
     implementation deps.support.v4
-    implementation deps.constraint_layout
     implementation deps.navigation.fragment_ktx
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.java8
-    implementation deps.paging
+
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.moshi
     implementation deps.moshi_kotlin
     implementation deps.okhttp_logging_interceptor
 
+    implementation deps.rxjava
+    implementation deps.rx_android
+
     implementation deps.glide.runtime
 
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-
-
-    implementation deps.coroutines
-    implementation deps.coroutines_android
-    implementation deps.coroutine_adapter
     kapt deps.glide.compiler
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
