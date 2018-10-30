@@ -3,7 +3,7 @@ def versions = [:]
 
 versions.support = "1.0.0"
 versions.lifecycle = "2.0.0"
-versions.dagger = "2.16"
+versions.koin = "1.0.1"
 versions.retrofit = "2.4.0"
 versions.okhttp_logging_interceptor = "3.9.0"
 versions.glide = "4.8.0"
@@ -44,13 +44,9 @@ navigation.fragment_ktx = "android.arch.navigation:navigation-fragment-ktx:$vers
 navigation.safe_args_plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 deps.navigation = navigation
 
-def dagger = [:]
-dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
-dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
-dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
-dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
-dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
-deps.dagger = dagger
+def koin = [:]
+koin.android_viewmodel = "org.koin:koin-android-viewmodel:$versions.koin"
+deps.koin = koin
 
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"

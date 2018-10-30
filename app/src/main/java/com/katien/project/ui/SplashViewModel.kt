@@ -6,9 +6,8 @@ import kotlinx.coroutines.experimental.CoroutineScope
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
-import javax.inject.Inject
 
-class SplashViewModel @Inject constructor() : ViewModel() {
+class SplashViewModel : ViewModel() {
     val isAuthed = MutableLiveData<Boolean>()
 
     val job = Job()

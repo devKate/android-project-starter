@@ -54,10 +54,7 @@ dependencies {
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.java8
-
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
+    implementation deps.koin.android_viewmodel
 
     implementation deps.retrofit.runtime
     implementation deps.retrofit.moshi
@@ -70,7 +67,5 @@ dependencies {
     implementation deps.glide.runtime
 
     kapt deps.glide.compiler
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
     kapt deps.lifecycle.compiler
 }
