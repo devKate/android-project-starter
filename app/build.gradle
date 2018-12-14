@@ -68,4 +68,9 @@ dependencies {
 
     kapt deps.glide.compiler
     kapt deps.lifecycle.compiler
+
+    testImplementation deps.junit
+    testImplementation deps.mockito
+    testImplementation deps.assertj
+    testImplementation deps.koin.test
 }
