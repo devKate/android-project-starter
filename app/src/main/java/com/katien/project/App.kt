@@ -1,20 +1,18 @@
 package com.katien.project
 
-import android.app.Activity
 import android.app.Application
-import com.katien.project.di.helpers.AppInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import javax.inject.Inject
+import com.jakewharton.threetenabp.AndroidThreeTen
+import com.katien.project.di.appModule
+import com.katien.project.di.viewModelModule
+import org.koin.android.ext.android.startKoin
 
-class App : Application(), HasActivityInjector {
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
-
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        AppInjector.init(this)
+        AndroidThreeTen.init(this)
+        startKoin(this, listOf(
+                appModule,
+                viewModelModule
+        ))
     }
-
-    override fun activityInjector() = dispatchingAndroidInjector
 }

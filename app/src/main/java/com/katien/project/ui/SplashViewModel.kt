@@ -2,17 +2,12 @@ package com.katien.project.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.launch
-import javax.inject.Inject
+import kotlinx.coroutines.*
 
-class SplashViewModel @Inject constructor() : ViewModel() {
+class SplashViewModel : ViewModel() {
     val isAuthed = MutableLiveData<Boolean>()
 
-    val job = Job()
-    val uiScope = CoroutineScope(Dispatchers.Main + job)
+    val uiScope = CoroutineScope(Dispatchers.Main + Job())
 
     fun checkAuth() {
         uiScope.launch {
@@ -23,6 +18,6 @@ class SplashViewModel @Inject constructor() : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        job.cancel()
+        uiScope.coroutineContext.cancel()
     }
 }

@@ -39,38 +39,66 @@ android {
 }
 
 dependencies {
-    implementation deps.kotlin.stdlib
 
-    implementation deps.coroutines.core
-    implementation deps.coroutines.android
-    implementation deps.coroutines.adapter
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
-    implementation deps.support.app_compat
-    implementation deps.support.recyclerview
-    implementation deps.support.cardview
-    implementation deps.support.design
-    implementation deps.support.v4
-    implementation deps.navigation.fragment_ktx
-    implementation deps.lifecycle.runtime
-    implementation deps.lifecycle.extensions
-    implementation deps.lifecycle.java8
+    // dates
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
 
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
+    // push notifications
+    implementation "com.google.firebase:firebase-core:16.0.6"
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.moshi
-    implementation deps.moshi_kotlin
-    implementation deps.okhttp_logging_interceptor
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
-    implementation deps.rxjava
-    implementation deps.rx_android
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$versions.coroutine_adapter"
 
-    implementation deps.glide.runtime
+    // support
+    implementation "androidx.appcompat:appcompat:$versions.support"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 
-    kapt deps.glide.compiler
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
-    kapt deps.lifecycle.compiler
+    // room
+    implementation "android.arch.persistence.room:runtime:$versions.room"
+    annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
+
+    // nav
+    implementation "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+
+    // koin
+    implementation "org.koin:koin-android-viewmodel:$versions.koin"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi_kotlin"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging_interceptor"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+
+
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+    kapt "android.arch.persistence.room:compiler:$versions.room"
+
+    testImplementation "junit:junit:$versions.junit"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito"
+    testImplementation "org.assertj:assertj-core:$versions.assertj"
+    testImplementation "org.koin:koin-test:$versions.koin"
 }

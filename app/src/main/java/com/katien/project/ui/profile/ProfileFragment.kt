@@ -5,27 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.katien.project.GlideApp
 import com.katien.project.R
-import com.katien.project.di.helpers.Injectable
 import com.katien.project.remote.util.ServerError
 import com.katien.project.ui.util.makeToast
 import kotlinx.android.synthetic.main.profile_fragment.*
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.cancel
-import kotlinx.coroutines.experimental.launch
-import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class ProfileFragment : Fragment(), Injectable {
+class ProfileFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var profileViewModel: ProfileViewModel
+    val profileViewModel: ProfileViewModel by viewModel()
 
     val uiScope = CoroutineScope(Dispatchers.Main)
 
@@ -34,13 +29,9 @@ class ProfileFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        profileViewModel = ViewModelProviders
-                .of(this, viewModelFactory)
-                .get(ProfileViewModel::class.java)
-
         uiScope.launch {
             try {
-                val profile = profileViewModel.fetchProfile(ProfileFragmentArgs.fromBundle(arguments).username)
+                val profile = profileViewModel.fetchProfile(ProfileFragmentArgs.fromBundle(arguments!!).username)
                 GlideApp.with(this@ProfileFragment)
                         .load(profile.avatarUrl)
                         .placeholder(R.drawable.background_splash)
