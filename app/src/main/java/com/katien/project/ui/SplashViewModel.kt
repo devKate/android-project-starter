@@ -9,12 +9,11 @@ class SplashViewModel : ViewModel() {
 
     val uiScope = CoroutineScope(Dispatchers.Main + Job())
 
-    fun checkAuth() {
+    fun checkAuth() =
         uiScope.launch {
-            //            delay(1_000)
             isAuthed.value = true
         }
-    }
+
 
     override fun onCleared() {
         super.onCleared()

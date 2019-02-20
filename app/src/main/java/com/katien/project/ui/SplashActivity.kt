@@ -13,14 +13,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         splashViewModel.isAuthed.observe(this, Observer {
-
             if (it == true) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
-
         })
         splashViewModel.checkAuth()
     }

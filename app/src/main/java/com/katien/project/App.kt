@@ -10,9 +10,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
-        startKoin(this, listOf(
-                appModule,
-                viewModelModule
-        ))
+        startKoin(this, listOf(appModule, viewModelModule))
     }
 }

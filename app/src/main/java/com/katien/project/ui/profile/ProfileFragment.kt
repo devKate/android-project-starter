@@ -19,7 +19,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
-
     val profileViewModel: ProfileViewModel by viewModel()
 
     val uiScope = CoroutineScope(Dispatchers.Main)
